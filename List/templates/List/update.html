@@ -1,0 +1,14 @@
+{% extends "List/task_list.html" %}
+
+{% block title %}Update Item{% endblock %}
+
+{% block content %}
+<h2>Update Item</h2>
+<form method="POST" action="">
+    {% csrf_token %}
+    <label for="item_name">Update Name:</label>
+    <input type="text" id="item_name" name="Items" value="{{ item.Items }}" required><br><br>  <!-- The name should be 'Items' -->
+    <button type="submit">Update</button>
+</form>
+<a href="{% url 'task_list' %}">Back to Task List</a>
+{% endblock %}

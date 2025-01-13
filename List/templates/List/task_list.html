@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO-LIST</title>
+</head>
+<body>
+
+    <h1>Task Table</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>S_NO</th>
+                <th>Items</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if items %}
+                {% for i in items %}
+                <tr>
+                    <td>{{ i.S_No }}</td>
+                    <td>{{ i.Items }}</td>
+                    <td>
+                        <a href="{% url 'add_item' %}"><button>Add New Item</button></a>
+                        <a href="{% url 'update_item' i.S_No %}"><button>Edit</button></a>
+                        <a href="{% url 'delete_item' i.S_No %}"><button>Delete</button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3" style="text-align: center;">No tasks available.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <!-- "Add New Item" button always visible outside the table -->
+    <div style="margin-top: 20px;">
+        <a href="{% url 'add_item' %}"><button>Add New Item</button></a>
+    </div>
+
+    {% block content %} {% endblock %}
+
+</body>
+</html>
